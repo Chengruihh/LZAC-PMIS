@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="478"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-iT-JNe">
+                    <rect key="frame" x="10" y="10" width="363" height="229"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="Mlt-Fg-nde"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="R9x-F5-7HP"/>
+                    </connections>
+                </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K5F-z1-UKL">
+                    <rect key="frame" x="10" y="249" width="363" height="229"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="ahW-OP-esf"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="74K-4n-psQ"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="K5F-z1-UKL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="19t-lo-yhb"/>
+                <constraint firstItem="9gr-iT-JNe" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" constant="-10" id="8aD-q3-u3a"/>
+                <constraint firstAttribute="bottom" secondItem="K5F-z1-UKL" secondAttribute="bottom" id="A0V-ib-ZT7"/>
+                <constraint firstItem="9gr-iT-JNe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="EbS-v8-0Bg"/>
+                <constraint firstItem="9gr-iT-JNe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="OGV-dF-KDT"/>
+                <constraint firstItem="K5F-z1-UKL" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" constant="-10" id="Ucw-2A-yb2"/>
+                <constraint firstItem="9gr-iT-JNe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eVO-jr-Z5Z"/>
+                <constraint firstItem="K5F-z1-UKL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="nXS-MN-i4q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="partsTableView" destination="K5F-z1-UKL" id="iz2-2g-x2o"/>
+                <outlet property="plantTableView" destination="9gr-iT-JNe" id="N2o-WJ-EPe"/>
+            </connections>
+            <point key="canvasLocation" x="136.5" y="291"/>
+        </view>
+    </objects>
+</document>
