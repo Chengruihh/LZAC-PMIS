@@ -58,10 +58,10 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.isSearch) {
-        return 120;
+        return 110;
     }
     else
-        return 70;
+        return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -90,8 +90,9 @@
         DoubleLabelCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil) {
             NSArray *cellObjects = [[NSBundle mainBundle] loadNibNamed:@"DoubleLabelCell" owner:self options:nil];
-            cell = (DoubleLabelCell*)[cellObjects objectAtIndex:0];
+            cell = cellObjects.firstObject;
         }
+//        cell.imgView.contentMode = UIViewContentModeScaleAspectFill;
         switch (indexPath.row) {
             case 0:
                 cell.imgView.image = [UIImage imageNamed:@"code"];

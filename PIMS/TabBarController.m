@@ -18,7 +18,6 @@
 #import "DataManager.h"
 
 @interface TabBarController ()<UITabBarDelegate>
-@property (assign, nonatomic) CGRect midViewFrame;
 @property (strong, nonatomic) UITabBarItem *lastSelected;
 @end
 
@@ -32,8 +31,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(searchSucceed) name:@"searchSucceed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestBasicSucceed) name:@"requestBasicSucceed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestDetailSucceed) name:@"requestDetailSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestDocListSucceed) name:@"requestDocListSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestPlantListSucceed) name:@"requestPlantListSucceed" object:nil];
     
-    self.midViewFrame = CGRectMake(self.midView.frame.origin.x, self.midView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topView.frame.size.height-self.tabbar.frame.size.height-20);
+    [DataManager sharedInstance].midViewFrame = CGRectMake(self.midView.frame.origin.x, self.midView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topView.frame.size.height-self.tabbar.frame.size.height-20);
     // Do any additional setup after loading the view.
 //    [LoginController presentLoginController:self];
     self.tabbar.selectedItem = nil;
@@ -42,10 +43,10 @@
     
 //    NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
 //    BasicInfoView *basicInfoView = xibObjects.firstObject;
-    UIView *basicInfoView = [[UIView alloc]initWithFrame:self.midViewFrame];
-    basicInfoView.frame = self.midViewFrame;
-    UIGraphicsBeginImageContext(self.midViewFrame.size);
-    [[UIImage imageNamed:@"no_content"] drawInRect:CGRectMake(20, 90, self.midViewFrame.size.width-40, [UIImage imageNamed:@"no_content"].size.height-27)];
+    UIView *basicInfoView = [[UIView alloc]initWithFrame:[DataManager sharedInstance].midViewFrame];
+    basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
+    UIGraphicsBeginImageContext([DataManager sharedInstance].midViewFrame.size);
+    [[UIImage imageNamed:@"no_content"] drawInRect:CGRectMake(20, 90, [DataManager sharedInstance].midViewFrame.size.width-40, [UIImage imageNamed:@"no_content"].size.height-27)];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     basicInfoView.backgroundColor = [UIColor colorWithPatternImage:image];
@@ -97,7 +98,7 @@
             _midView = nil;
             NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DetailInfoView" owner:self options:nil];
             DetailInfoView *div = xibObjects.firstObject;
-            div.frame = self.midViewFrame;
+            div.frame = [DataManager sharedInstance].midViewFrame;
             [self.view addSubview:div];
             self.midView = div;
         }
@@ -105,24 +106,33 @@
         NSLog(@"1");
     }
     else if (item == self.plantListTab) {
-        [_midView removeFromSuperview];
-        _midView = nil;
-        NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"PlantListInfoView" owner:self options:nil];
-        DetailInfoView *pliv = xibObjects.firstObject;
-        pliv.frame = self.midViewFrame;
-        [self.view addSubview:pliv];
-        self.midView = pliv;
+        if ([DataManager sharedInstance].basicViewModel) {
+            [[RequestManager sharedInstance]requestPlantList:[[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode]];
+        }else{
+            [_midView removeFromSuperview];
+            _midView = nil;
+            NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"PlantListInfoView" owner:self options:nil];
+            DetailInfoView *pliv = xibObjects.firstObject;
+            pliv.frame = [DataManager sharedInstance].midViewFrame;
+            [self.view addSubview:pliv];
+            self.midView = pliv;
+            
+        }
         NSLog(@"2");
         self.lastSelected = self.plantListTab;
     }
     else if (item == self.docListTab) {
-        [_midView removeFromSuperview];
-        _midView = nil;
-        NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DocListView" owner:self options:nil];
-        DetailInfoView *dlv = xibObjects.firstObject;
-        dlv.frame = self.midViewFrame;
-        [self.view addSubview:dlv];
-        self.midView = dlv;
+        if ([DataManager sharedInstance].basicViewModel) {
+            [[RequestManager sharedInstance]requestDocList:[[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode]];
+        }else{
+            [_midView removeFromSuperview];
+            _midView = nil;
+            NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DocListView" owner:self options:nil];
+            DocListView *dlv = xibObjects.firstObject;
+            dlv.frame = [DataManager sharedInstance].midViewFrame;
+            [self.view addSubview:dlv];
+            self.midView = dlv;
+        }
         self.lastSelected = self.docListTab;
         NSLog(@"3");
     }
@@ -131,7 +141,7 @@
         _midView = nil;
         NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"UserInfoView" owner:self options:nil];
         DetailInfoView *uiv = xibObjects.firstObject;
-        uiv.frame = self.midViewFrame;
+        uiv.frame = [DataManager sharedInstance].midViewFrame;
         [self.view addSubview:uiv];
         self.midView = uiv;
         self.lastSelected = self.myTab;
@@ -163,7 +173,7 @@
     self.lastSelected = nil;
     NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
     BasicInfoView *basicInfoView = xibObjects.firstObject;
-    basicInfoView.frame = self.midViewFrame;
+    basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
     basicInfoView.isSearch = NO;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
@@ -175,7 +185,7 @@
     [_midView removeFromSuperview];
     NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
     BasicInfoView *basicInfoView = xibObjects.firstObject;
-    basicInfoView.frame = self.midViewFrame;
+    basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
     basicInfoView.isSearch = YES;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
@@ -185,7 +195,7 @@
     [_midView removeFromSuperview];
     NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
     BasicInfoView *basicInfoView = xibObjects.firstObject;
-    basicInfoView.frame = self.midViewFrame;
+    basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
     basicInfoView.isSearch = NO;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
@@ -196,10 +206,29 @@
     _midView = nil;
     NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DetailInfoView" owner:self options:nil];
     DetailInfoView *div = xibObjects.firstObject;
-    div.frame = self.midViewFrame;
+    div.frame = [DataManager sharedInstance].midViewFrame;
     [self.view addSubview:div];
     self.midView = div;
     
     
+}
+
+-(void)requestDocListSucceed{
+    [_midView removeFromSuperview];
+    _midView = nil;
+    NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DocListView" owner:self options:nil];
+    DocListView *dlv = xibObjects.firstObject;
+    dlv.frame = [DataManager sharedInstance].midViewFrame;
+    [self.view addSubview:dlv];
+    self.midView = dlv;
+}
+-(void)requestPlantListSucceed{
+    [_midView removeFromSuperview];
+    _midView = nil;
+    NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"PlantListInfoView" owner:self options:nil];
+    PlantListInfoView *plv = xibObjects.firstObject;
+    plv.frame = [DataManager sharedInstance].midViewFrame;
+    [self.view addSubview:plv];
+    self.midView = plv;
 }
 @end

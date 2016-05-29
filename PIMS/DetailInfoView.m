@@ -41,10 +41,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.plantTableView) {
-        return 70;
+        return 60;
     }
     else
-        return 150;
+        return 140;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -203,6 +203,7 @@
         UIView *view = [[UIView alloc]init];
         UIImageView *headerForDetail = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"detail"]];
         [view addSubview:headerForDetail];
+        headerForDetail.bounds = CGRectMake(0, 0, 50, 20);
         view.backgroundColor = [UIColor whiteColor];
         return view;
     }

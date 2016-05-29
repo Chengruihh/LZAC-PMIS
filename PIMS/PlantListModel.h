@@ -11,5 +11,5 @@
 @interface PlantListModel : EquipmentModel
 @property (nonatomic, strong) NSString *parentequipmentcode;
 @property (nonatomic, strong) NSString *parentequipmentname;
-@property (nonatomic, strong) NSString *lvl;
+@property (nonatomic, assign) int lvl;
 @end

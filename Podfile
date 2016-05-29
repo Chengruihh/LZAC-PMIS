@@ -5,4 +5,3 @@ pod 'SDWebImage', '~>3.7'
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'JSONModel'
 pod 'AFNetworking', '~> 3.0'
-pod "RATreeView", "~> 2.1.0"

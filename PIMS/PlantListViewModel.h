@@ -12,4 +12,7 @@
 @end
 @interface PlantListViewModel : JSONModel
 @property (nonatomic, strong) NSArray<PlantListModel> *SheBeiMuLu;
+
+-(NSInteger)numberOfChildren;
+-(NSArray<PlantListModel> *)listOfChildrenPlant;
 @end

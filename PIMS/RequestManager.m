@@ -90,6 +90,21 @@
 
 -(void)requestPlantList:(NSString *)eqptCode{
     NSDictionary *params = @{@"requestcode":@"005", @"equipmentcode":eqptCode};
+    [_sessionManager POST:PIMS_HOST parameters:params
+                 progress:nil
+                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                      NSString *responseStr = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+                      [DataManager sharedInstance].plantListViewModel = [[PlantListViewModel alloc]initWithString:responseStr error:nil];
+
+                      NSLog(@"plant list: %@",responseStr);
+                      [self postNotification:@"requestPlantListSucceed"];
+                  }
+                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                      [self postNotification:@"requestPlantListFailed"];
+                      NSLog(@"plant list fail");
+                      NSLog(@"%@",error);
+                      
+                  }];
 
 }
 

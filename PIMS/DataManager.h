@@ -19,9 +19,9 @@
 @property (strong, nonatomic) BasicViewModel *basicViewModel;
 @property (strong, nonatomic) DetailViewModel *detailViewModel;
 @property (strong, nonatomic) PlantListViewModel *plantListViewModel;
-//@property (strong, nonatomic) DocListRequestModel *docListRequestModel;
 @property (strong, nonatomic) SearchViewModel *searchViewModel;
 @property (strong, nonatomic) DocListViewModel *docListViewModel;
+@property (assign, nonatomic) CGRect midViewFrame;
 
 -(DocListViewModel *)convertDocListViewModel:(DocListRequestModel *)docListRequestModel;
 @end

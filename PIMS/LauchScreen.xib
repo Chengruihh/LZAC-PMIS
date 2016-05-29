@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="PNb-CW-GkG">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Qs5-hC-TWV">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zL2-c8-P0H">
+                    <rect key="frame" x="245" y="100" width="110" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="GDU-B7-dAX"/>
+                        <constraint firstAttribute="width" constant="110" id="xVf-9M-6op"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Qs5-hC-TWV" firstAttribute="top" secondItem="zL2-c8-P0H" secondAttribute="bottom" constant="-215" id="4AO-5x-NmA"/>
+                <constraint firstItem="zL2-c8-P0H" firstAttribute="centerY" secondItem="Qs5-hC-TWV" secondAttribute="centerY" id="72B-1A-9M8"/>
+                <constraint firstItem="Qs5-hC-TWV" firstAttribute="top" secondItem="PNb-CW-GkG" secondAttribute="top" id="8QH-fm-ynU"/>
+                <constraint firstAttribute="trailing" secondItem="Qs5-hC-TWV" secondAttribute="trailing" id="JRp-e1-j4Q"/>
+                <constraint firstAttribute="bottom" secondItem="Qs5-hC-TWV" secondAttribute="bottom" id="Uua-hB-q7G"/>
+                <constraint firstItem="Qs5-hC-TWV" firstAttribute="leading" secondItem="PNb-CW-GkG" secondAttribute="leading" id="hVX-GQ-UaL"/>
+                <constraint firstItem="zL2-c8-P0H" firstAttribute="centerX" secondItem="PNb-CW-GkG" secondAttribute="centerX" id="nuC-Y1-6ob"/>
+                <constraint firstAttribute="bottom" secondItem="Qs5-hC-TWV" secondAttribute="bottom" id="t79-3P-IMp"/>
+                <constraint firstItem="zL2-c8-P0H" firstAttribute="top" secondItem="PNb-CW-GkG" secondAttribute="top" constant="100" id="vXQ-0D-bhA"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="4AO-5x-NmA"/>
+                    <exclude reference="t79-3P-IMp"/>
+                    <exclude reference="72B-1A-9M8"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="276" y="265"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_bg" width="432" height="768"/>
+        <image name="login_logo" width="110" height="180"/>
+    </resources>
+</document>

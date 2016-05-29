@@ -39,6 +39,7 @@
                 <constraint firstItem="9gr-iT-JNe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eVO-jr-Z5Z"/>
                 <constraint firstItem="K5F-z1-UKL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="nXS-MN-i4q"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="partsTableView" destination="K5F-z1-UKL" id="iz2-2g-x2o"/>
