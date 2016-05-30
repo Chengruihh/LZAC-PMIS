@@ -7,21 +7,37 @@
 //
 
 #import "PDFViewController.h"
+#import "DataManager.h"
+#import "ActivityIndicator.h"
 
-@interface PDFViewController ()
+@interface PDFViewController ()<UIWebViewDelegate>
 
 @end
 
 @implementation PDFViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [ActivityIndicator startActivityIndicator:self];
+    NSURL *url = [NSURL URLWithString:[DataManager sharedInstance].selectedDocUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    self.pdfView.scalesPageToFit=YES;
+    [self.pdfView loadRequest:request];
+    self.pdfView.delegate = self;
+    
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [ActivityIndicator stopActivityIndicator:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)backBtnTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

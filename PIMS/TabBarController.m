@@ -16,8 +16,11 @@
 #import "CodeScanController.h"
 #import "RequestManager.h"
 #import "DataManager.h"
+#import "ActivityIndicator.h"
+#import "Helper.h"
+#import "PDFViewController.h"
 
-@interface TabBarController ()<UITabBarDelegate>
+@interface TabBarController ()<UITabBarDelegate, DocumentDelegate, SearchDelegate>
 @property (strong, nonatomic) UITabBarItem *lastSelected;
 @end
 
@@ -40,6 +43,7 @@
     self.tabbar.selectedItem = nil;
     self.lastSelected = nil;
     self.tabbar.tintColor = [UIColor whiteColor];
+    
     
 //    NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
 //    BasicInfoView *basicInfoView = xibObjects.firstObject;
@@ -91,6 +95,7 @@
     else if (item == self.detailTab) {
         self.lastSelected = self.detailTab;
         if ([DataManager sharedInstance].basicViewModel) {
+            [ActivityIndicator startActivityIndicator:self];
             [[RequestManager sharedInstance]requestDetailInfo:[[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode]];
         }
         else{
@@ -107,6 +112,7 @@
     }
     else if (item == self.plantListTab) {
         if ([DataManager sharedInstance].basicViewModel) {
+            [ActivityIndicator startActivityIndicator:self];
             [[RequestManager sharedInstance]requestPlantList:[[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode]];
         }else{
             [_midView removeFromSuperview];
@@ -123,6 +129,7 @@
     }
     else if (item == self.docListTab) {
         if ([DataManager sharedInstance].basicViewModel) {
+            [ActivityIndicator startActivityIndicator:self];
             [[RequestManager sharedInstance]requestDocList:[[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode]];
         }else{
             [_midView removeFromSuperview];
@@ -149,18 +156,20 @@
     }
 }
 - (IBAction)scanBtnTapped:(id)sender {
+    [self hideKeyboard];
     [self.tabbar setSelectedItem:nil];
     self.lastSelected = nil;
     CodeScanController *scanController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CodeScanController"];
-//    scanController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:scanController animated:YES completion:nil];
     
 }
 - (IBAction)searchBtnTapped:(id)sender {
+    [self hideKeyboard];
     if (self.searchTF.text == nil || self.searchTF.text.length==0) {
-        //
+        [Helper showTextView:@"Please enter query words." withView:self.view];
     }
     else{
+        [ActivityIndicator startActivityIndicator:self];
         [[RequestManager sharedInstance] searchWithKeyword:self.searchTF.text];
         
     }
@@ -177,6 +186,7 @@
     basicInfoView.isSearch = NO;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
+    [ActivityIndicator stopActivityIndicator:self];
 }
 
 -(void)searchSucceed{
@@ -189,6 +199,7 @@
     basicInfoView.isSearch = YES;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
+    [ActivityIndicator stopActivityIndicator:self];
 }
 
 -(void)requestBasicSucceed{
@@ -199,6 +210,7 @@
     basicInfoView.isSearch = NO;
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
+    [ActivityIndicator stopActivityIndicator:self];
 }
 
 -(void)requestDetailSucceed{
@@ -209,7 +221,7 @@
     div.frame = [DataManager sharedInstance].midViewFrame;
     [self.view addSubview:div];
     self.midView = div;
-    
+    [ActivityIndicator stopActivityIndicator:self];
     
 }
 
@@ -219,8 +231,10 @@
     NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"DocListView" owner:self options:nil];
     DocListView *dlv = xibObjects.firstObject;
     dlv.frame = [DataManager sharedInstance].midViewFrame;
+    dlv.delegate = self;
     [self.view addSubview:dlv];
     self.midView = dlv;
+    [ActivityIndicator stopActivityIndicator:self];
 }
 -(void)requestPlantListSucceed{
     [_midView removeFromSuperview];
@@ -230,5 +244,19 @@
     plv.frame = [DataManager sharedInstance].midViewFrame;
     [self.view addSubview:plv];
     self.midView = plv;
+    [ActivityIndicator stopActivityIndicator:self];
+}
+
+-(void)loadPDFViewForDocument{
+    PDFViewController *pdfViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PDFViewController"];
+    [self presentViewController:pdfViewController animated:YES completion:nil];
+}
+
+-(void)hideKeyboard{
+    [self.searchTF resignFirstResponder];
+}
+
+-(void)showActivityIndicator{
+    [ActivityIndicator startActivityIndicator:self];
 }
 @end

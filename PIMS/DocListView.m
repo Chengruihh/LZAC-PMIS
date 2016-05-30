@@ -13,6 +13,7 @@
 #import "Document.h"
 #import "DocumentCell.h"
 #import "FolderCell.h"
+#import "PDFViewController.h"
 
 @interface DocListView() <RATreeViewDelegate, RATreeViewDataSource>
 //@property (strong, nonatomic) id expanded;
@@ -139,7 +140,13 @@
     return folder.documentList[index];
 }
 
-
+-(void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo{
+    if ([item isKindOfClass:[Document class]]) {
+        [DataManager sharedInstance].selectedDocUrl = ((Document *)item).docURL;
+        
+        [self.delegate loadPDFViewForDocument];
+    }
+}
 
 
 @end

@@ -8,5 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DocListRequestModel.h"
+@protocol DocumentDelegate <NSObject>
+
+-(void)loadPDFViewForDocument;
+
+@end
 @interface DocListView : UIView
+@property (weak, nonatomic) id<DocumentDelegate> delegate;
 @end

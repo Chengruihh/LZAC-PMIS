@@ -33,7 +33,11 @@
         }
         //        UINib *nib = [UINib nibWithNibName:@"DoubleLabelCell" bundle:nil];
         //        [self.basicInfoTableView registerNib:nib forCellReuseIdentifier:@"DoubleLabelCell"];
+        self.plantTableView.backgroundView.backgroundColor = [UIColor redColor];
+        self.plantTableView.backgroundColor = [UIColor redColor];
         
+        self.partsTableView.backgroundView.backgroundColor = [UIColor blueColor];
+        self.partsTableView.backgroundColor = [UIColor blueColor];
     }
     return self;
     
@@ -193,6 +197,9 @@
         cell.fifthLabel.text = part.number;
         cell.sixthLabel.text = part.modificationtime;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.backgroundView.backgroundColor = [UIColor clearColor];
         return cell;
     }
     
@@ -203,16 +210,23 @@
         UIView *view = [[UIView alloc]init];
         UIImageView *headerForDetail = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"detail"]];
         [view addSubview:headerForDetail];
-        headerForDetail.bounds = CGRectMake(0, 0, 50, 20);
+        headerForDetail.frame = CGRectMake(0, 0, 100, 20);
         view.backgroundColor = [UIColor whiteColor];
         return view;
     }
     else{
         UIView *view = [[UIView alloc]init];
         UIImageView *headerForParts = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"component"]];
+        headerForParts.frame = CGRectMake(0, 0, 100, 20);
         [view addSubview:headerForParts];
         view.backgroundColor = [UIColor whiteColor];
         return view;
     }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundView.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
 }
 @end

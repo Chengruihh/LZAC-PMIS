@@ -22,6 +22,9 @@
 @property (strong, nonatomic) SearchViewModel *searchViewModel;
 @property (strong, nonatomic) DocListViewModel *docListViewModel;
 @property (assign, nonatomic) CGRect midViewFrame;
+@property (strong, nonatomic) NSString *selectedDocUrl;
 
 -(DocListViewModel *)convertDocListViewModel:(DocListRequestModel *)docListRequestModel;
+
+#define themeBlue 0x0F3464
 @end

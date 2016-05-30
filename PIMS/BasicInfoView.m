@@ -149,6 +149,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.isSearch) {
         if([DataManager sharedInstance].searchViewModel.SouSuoJieGuo.count > 0){
+            [self.delegate showActivityIndicator];
             [[RequestManager sharedInstance] requestBasicInfo:[[DataManager sharedInstance].searchViewModel.SouSuoJieGuo[indexPath.row] equipmentcode]];
         }
     }

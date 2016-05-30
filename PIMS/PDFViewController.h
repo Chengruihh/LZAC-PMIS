@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PDFViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIWebView *pdfView;
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @end

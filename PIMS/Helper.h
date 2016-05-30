@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
+#import <MBProgressHUD.h>
 @interface Helper : NSObject
-
++ (void)showTextView:(nonnull NSString *)text withView:(nonnull UIView *)view;
 @end
