@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -28,43 +29,43 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seprater" translatesAutoresizingMaskIntoConstraints="NO" id="brB-vH-BVi">
-                    <rect key="frame" x="20" y="305" width="326" height="2"/>
+                    <rect key="frame" x="20" y="325.5" width="326" height="2"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="Rtg-Q8-P04"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="version" translatesAutoresizingMaskIntoConstraints="NO" id="7Wc-5c-2pM">
-                    <rect key="frame" x="46" y="241" width="33" height="34"/>
+                    <rect key="frame" x="46" y="261.5" width="33" height="34"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="document" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-Hb-2FW">
-                    <rect key="frame" x="46" y="316" width="34" height="35"/>
+                    <rect key="frame" x="46" y="336.5" width="34" height="35"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXR-QU-zR1">
-                    <rect key="frame" x="102" y="227" width="90.5" height="21"/>
+                    <rect key="frame" x="102" y="247.5" width="90.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.058823529411764705" green="0.20392156862745098" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version 1.1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3f-Sx-6jy">
-                    <rect key="frame" x="102" y="250" width="78.5" height="17"/>
+                    <rect key="frame" x="102" y="270.5" width="78.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2016-2017 By LNZX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVV-jJ-eAU">
-                    <rect key="frame" x="102" y="268" width="198" height="17"/>
+                    <rect key="frame" x="102" y="288.5" width="198" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQY-Yb-irY">
-                    <rect key="frame" x="100" y="317" width="185" height="33"/>
+                    <rect key="frame" x="100" y="337.5" width="185" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="tintColor" red="0.058823529411764705" green="0.20392156862745098" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Document Management"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le9-eL-s8g">
-                    <rect key="frame" x="58" y="466" width="250" height="54"/>
+                    <rect key="frame" x="58" y="467" width="250" height="54"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="250" id="BXd-j8-Num"/>
                         <constraint firstAttribute="width" secondItem="le9-eL-s8g" secondAttribute="height" multiplier="51:11" id="BY9-G6-AaK"/>
@@ -79,14 +80,14 @@
                 <constraint firstItem="vR6-Hb-2FW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="46" id="8bN-1v-TdM"/>
                 <constraint firstItem="ZQY-Yb-irY" firstAttribute="leading" secondItem="vR6-Hb-2FW" secondAttribute="trailing" constant="20" id="9mG-wv-wuF"/>
                 <constraint firstItem="ZQY-Yb-irY" firstAttribute="top" secondItem="brB-vH-BVi" secondAttribute="bottom" constant="10" id="9or-iF-iId"/>
-                <constraint firstAttribute="bottom" secondItem="le9-eL-s8g" secondAttribute="bottom" constant="53" id="BPb-rH-4nG"/>
+                <constraint firstAttribute="bottom" secondItem="le9-eL-s8g" secondAttribute="bottom" multiplier="1.1" id="BPb-rH-4nG"/>
                 <constraint firstItem="Gep-Ss-9Ya" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BRe-Xn-lBJ"/>
                 <constraint firstItem="vR6-Hb-2FW" firstAttribute="centerY" secondItem="ZQY-Yb-irY" secondAttribute="centerY" id="CCj-QX-Qz1"/>
                 <constraint firstItem="IVV-jJ-eAU" firstAttribute="top" secondItem="u3f-Sx-6jy" secondAttribute="bottom" constant="1" id="Eff-eU-kkS"/>
                 <constraint firstItem="PBF-T5-KYk" firstAttribute="top" secondItem="Gep-Ss-9Ya" secondAttribute="bottom" constant="-46" id="Hep-X8-dxY"/>
                 <constraint firstItem="brB-vH-BVi" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" constant="-40" id="Il2-v9-p5H"/>
                 <constraint firstItem="brB-vH-BVi" firstAttribute="top" secondItem="IVV-jJ-eAU" secondAttribute="bottom" constant="20" id="IyP-HQ-xB5"/>
-                <constraint firstItem="brB-vH-BVi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="20" id="NU3-P3-HbQ"/>
+                <constraint firstItem="brB-vH-BVi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="40" id="NU3-P3-HbQ"/>
                 <constraint firstItem="vR6-Hb-2FW" firstAttribute="leading" secondItem="7Wc-5c-2pM" secondAttribute="leading" id="Uco-dc-lmM"/>
                 <constraint firstItem="u3f-Sx-6jy" firstAttribute="leading" secondItem="IVV-jJ-eAU" secondAttribute="leading" id="V8x-ax-opT"/>
                 <constraint firstItem="brB-vH-BVi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aPP-J9-WRl"/>

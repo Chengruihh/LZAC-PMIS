@@ -61,6 +61,9 @@
 		735AE12D1CD8915A0062F35C /* SearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735AE12C1CD8915A0062F35C /* SearchViewModel.m */; };
 		739E283A1CE32E5C00487E69 /* DoubleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 739E28381CE32E5C00487E69 /* DoubleLabelCell.m */; };
 		739E283B1CE32E5C00487E69 /* DoubleLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739E28391CE32E5C00487E69 /* DoubleLabelCell.xib */; };
+		73D243DB1CFB68CC00C3BB87 /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D243DA1CFB68CC00C3BB87 /* ActivityIndicator.m */; };
+		73D243DE1CFB6C8400C3BB87 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D243DD1CFB6C8400C3BB87 /* Helper.m */; };
+		73D243E11CFB6EFC00C3BB87 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D243E01CFB6EFC00C3BB87 /* PDFViewController.m */; };
 		73D788231CD3146B00469B12 /* BasicInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D788221CD3146B00469B12 /* BasicInfoModel.m */; };
 		73D788261CD3148900469B12 /* DetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D788251CD3148900469B12 /* DetailInfoModel.m */; };
 		73D788291CD3151E00469B12 /* PlantListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D788281CD3151E00469B12 /* PlantListModel.m */; };
@@ -101,7 +104,7 @@
 		731F9F891CE06DB300E5C927 /* DocListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocListView.xib; sourceTree = "<group>"; };
 		731F9F8B1CE06DE600E5C927 /* PlantListInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlantListInfoView.xib; sourceTree = "<group>"; };
 		731F9F8D1CE06DFA00E5C927 /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
-		7326CEB41CC85F8D00519A81 /* PIMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7326CEB41CC85F8D00519A81 /* PMIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PMIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7326CEB81CC85F8D00519A81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7326CEBA1CC85F8D00519A81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7326CEBB1CC85F8D00519A81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -163,6 +166,12 @@
 		739E28391CE32E5C00487E69 /* DoubleLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoubleLabelCell.xib; sourceTree = "<group>"; };
 		739E283D1CE3360E00487E69 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		739E283E1CE3360E00487E69 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		73D243D91CFB68CC00C3BB87 /* ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicator.h; sourceTree = "<group>"; };
+		73D243DA1CFB68CC00C3BB87 /* ActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicator.m; sourceTree = "<group>"; };
+		73D243DC1CFB6C8400C3BB87 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		73D243DD1CFB6C8400C3BB87 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		73D243DF1CFB6EFC00C3BB87 /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
+		73D243E01CFB6EFC00C3BB87 /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
 		73D788211CD3146B00469B12 /* BasicInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoModel.h; sourceTree = "<group>"; };
 		73D788221CD3146B00469B12 /* BasicInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInfoModel.m; sourceTree = "<group>"; };
 		73D788241CD3148900469B12 /* DetailInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailInfoModel.h; sourceTree = "<group>"; };
@@ -210,7 +219,7 @@
 		7326CEB51CC85F8D00519A81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7326CEB41CC85F8D00519A81 /* PIMS.app */,
+				7326CEB41CC85F8D00519A81 /* PMIS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 		7326CEB61CC85F8D00519A81 /* PIMS */ = {
 			isa = PBXGroup;
 			children = (
+				73D243D81CFB662300C3BB87 /* Helper */,
 				734A4FD41CF305EF004C9D7D /* RATreeView */,
 				739E283C1CE335BE00487E69 /* Manager */,
 				7326CED51CC8620000519A81 /* View */,
@@ -251,6 +261,8 @@
 				7326CEE61CC8690600519A81 /* CodeScanController.m */,
 				7326CEE81CC8760300519A81 /* TabBarController.h */,
 				7326CEE91CC8760300519A81 /* TabBarController.m */,
+				73D243DF1CFB6EFC00C3BB87 /* PDFViewController.h */,
+				73D243E01CFB6EFC00C3BB87 /* PDFViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -419,6 +431,17 @@
 			name = Manager;
 			sourceTree = "<group>";
 		};
+		73D243D81CFB662300C3BB87 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				73D243D91CFB68CC00C3BB87 /* ActivityIndicator.h */,
+				73D243DA1CFB68CC00C3BB87 /* ActivityIndicator.m */,
+				73D243DC1CFB6C8400C3BB87 /* Helper.h */,
+				73D243DD1CFB6C8400C3BB87 /* Helper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		D5EE0DFCCA616B9CE7FBC6E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +470,7 @@
 			);
 			name = PIMS;
 			productName = PIMS;
-			productReference = 7326CEB41CC85F8D00519A81 /* PIMS.app */;
+			productReference = 7326CEB41CC85F8D00519A81 /* PMIS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -576,6 +599,7 @@
 				734A4FEB1CF305EF004C9D7D /* RATreeNodeInfo+Private.m in Sources */,
 				7319DDC61CF7DAF500F42085 /* FolderCell.m in Sources */,
 				7326CEE71CC8690600519A81 /* CodeScanController.m in Sources */,
+				73D243E11CFB6EFC00C3BB87 /* PDFViewController.m in Sources */,
 				7326CEBC1CC85F8D00519A81 /* AppDelegate.m in Sources */,
 				734A4FF11CF305EF004C9D7D /* RATreeView+UIScrollView.m in Sources */,
 				73D7882F1CD315B200469B12 /* EquipmentModel.m in Sources */,
@@ -593,7 +617,9 @@
 				734A4FF01CF305EF004C9D7D /* RATreeView+TableViewDelegate.m in Sources */,
 				73435D901CEF0783001AED80 /* Folder.m in Sources */,
 				730F99F41CFAEA1600CD9CE1 /* CurrentPlantCell.m in Sources */,
+				73D243DB1CFB68CC00C3BB87 /* ActivityIndicator.m in Sources */,
 				734A4FF21CF305EF004C9D7D /* RATreeView.m in Sources */,
+				73D243DE1CFB6C8400C3BB87 /* Helper.m in Sources */,
 				734A4FE91CF305EF004C9D7D /* RATreeNode.m in Sources */,
 				735AE1291CD889C60062F35C /* DocListRequestModel.m in Sources */,
 				73D788291CD3151E00469B12 /* PlantListModel.m in Sources */,
@@ -723,7 +749,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LZAC.PIMS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = PMIS;
+				PRODUCT_NAME = PMIS;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -749,7 +776,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LZAC.PIMS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = PMIS;
+				PRODUCT_NAME = PMIS;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

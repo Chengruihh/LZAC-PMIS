@@ -11,5 +11,5 @@
 @interface PDFViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *pdfView;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
-
+@property (assign, nonatomic) bool isPresented;
 @end

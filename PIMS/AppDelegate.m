@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PDFViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,18 @@
     // Override point for customization after application launch.
     [NSThread sleepForTimeInterval:1.0];
     return YES;
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [PDFViewController class]]){
+        PDFViewController *secondController = (PDFViewController *) self.window.rootViewController.presentedViewController;
+        
+        if (secondController.isPresented)
+            return UIInterfaceOrientationMaskAll;
+        else return UIInterfaceOrientationMaskPortrait;
+        return UIInterfaceOrientationMaskAll;
+    }else
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -22,12 +23,20 @@
                             <constraint firstAttribute="height" constant="20" id="Uhe-wo-2af"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="nug-oz-kd0">
-                        <rect key="frame" x="184" y="65" width="10" height="8.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="nug-oz-kd0">
+                        <rect key="frame" x="184" y="68" width="10" height="8.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8.5" id="I8h-QQ-ssK"/>
+                            <constraint firstAttribute="width" secondItem="nug-oz-kd0" secondAttribute="height" multiplier="5:4" id="dWE-Y9-6tX"/>
+                            <constraint firstAttribute="width" constant="10" id="gB9-4x-Unu"/>
                             <constraint firstAttribute="width" constant="10" id="zbh-bz-IP2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dWE-Y9-6tX"/>
+                                <exclude reference="zbh-bz-IP2"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e22-bL-0hr">
                         <rect key="frame" x="43" y="6" width="121" height="21"/>
@@ -46,7 +55,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PU-pb-myU">
-                        <rect key="frame" x="184" y="32.5" width="166" height="14.5"/>
+                        <rect key="frame" x="184" y="32" width="166" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -65,7 +74,7 @@
                 <constraints>
                     <constraint firstItem="nug-oz-kd0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8CU-oj-INi"/>
                     <constraint firstItem="1rx-Nd-0iA" firstAttribute="centerY" secondItem="e22-bL-0hr" secondAttribute="centerY" id="Etd-r3-8BV"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="nug-oz-kd0" secondAttribute="bottom" constant="-2" id="Jtq-uD-0n5"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nug-oz-kd0" secondAttribute="bottom" constant="-5" id="Jtq-uD-0n5"/>
                     <constraint firstItem="zYz-Iw-L8g" firstAttribute="top" secondItem="e22-bL-0hr" secondAttribute="bottom" constant="2" id="KEs-tU-iRG"/>
                     <constraint firstItem="0PU-pb-myU" firstAttribute="trailing" secondItem="1rx-Nd-0iA" secondAttribute="trailing" id="OAY-WZ-Vlu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1rx-Nd-0iA" secondAttribute="trailing" constant="21" id="Wel-Q9-pod"/>
@@ -79,6 +88,11 @@
                     <constraint firstItem="1rx-Nd-0iA" firstAttribute="leading" secondItem="nug-oz-kd0" secondAttribute="leading" id="tXf-bo-bYO"/>
                     <constraint firstItem="0PU-pb-myU" firstAttribute="centerY" secondItem="zYz-Iw-L8g" secondAttribute="centerY" id="vR8-J8-foh"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="tXf-bo-bYO"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="plantCodeLabel" destination="0PU-pb-myU" id="Fjm-dE-dJW"/>

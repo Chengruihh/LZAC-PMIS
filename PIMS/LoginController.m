@@ -7,8 +7,9 @@
 //
 
 #import "LoginController.h"
-
-@interface LoginController ()
+#import "TabBarController.h"
+#import "DataManager.h"
+@interface LoginController () <UITextFieldDelegate>
 
 @end
 
@@ -17,7 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.autoLog.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    self.autoLog.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    self.loginAccount.delegate = self;
+    self.loginPassword.delegate = self;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    tapGesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,7 +37,7 @@
 +(void)presentLoginController:(UIViewController *)vc{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-    NSLog(@"%@\n\n%@",vc, ivc);
+    
     ivc.modalPresentationStyle = UIModalPresentationFormSheet;
     [vc presentViewController:ivc animated:NO completion:nil];
     
@@ -45,5 +51,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)hideKeyboard{
+    [[DataManager sharedInstance].currentTF resignFirstResponder];
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [DataManager sharedInstance].currentTF = textField;
+    return YES;
+}
 
 @end

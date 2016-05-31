@@ -39,7 +39,7 @@
         }
         self.frame = [DataManager sharedInstance].midViewFrame;
         CurrentPlantCell *topcell = [[NSBundle mainBundle] loadNibNamed:@"CurrentPlantCell" owner:nil options:nil].firstObject;
-        topcell.frame = CGRectMake(0, 40, self.bounds.size.width, 80);
+        topcell.frame = CGRectMake(0, 40, self.frame.size.width, 80);
         topcell.plantNameLabel.text = [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentname];
         topcell.plantCodeLabel.text = [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentcode];
         self.currentPlantCell = topcell;
@@ -85,6 +85,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [[DataManager sharedInstance].currentTF resignFirstResponder];
 }
 
 @end

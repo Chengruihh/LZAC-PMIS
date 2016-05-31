@@ -20,8 +20,9 @@
 #import "Helper.h"
 #import "PDFViewController.h"
 
-@interface TabBarController ()<UITabBarDelegate, DocumentDelegate, SearchDelegate>
+@interface TabBarController ()<UITabBarDelegate, DocumentDelegate, SearchDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) UITabBarItem *lastSelected;
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 @end
 
 @implementation TabBarController
@@ -37,12 +38,18 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestDocListSucceed) name:@"requestDocListSucceed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestPlantListSucceed) name:@"requestPlantListSucceed" object:nil];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"searchFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestBasicFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestDetailFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestDocListFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestPlantListFailed" object:nil];
+    
     [DataManager sharedInstance].midViewFrame = CGRectMake(self.midView.frame.origin.x, self.midView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topView.frame.size.height-self.tabbar.frame.size.height-20);
-    // Do any additional setup after loading the view.
-//    [LoginController presentLoginController:self];
+    
     self.tabbar.selectedItem = nil;
     self.lastSelected = nil;
     self.tabbar.tintColor = [UIColor whiteColor];
+    self.searchTF.delegate = self;
     
     
 //    NSArray *xibObjects = [[NSBundle mainBundle] loadNibNamed:@"BasicInfoView" owner:self options:nil];
@@ -50,12 +57,16 @@
     UIView *basicInfoView = [[UIView alloc]initWithFrame:[DataManager sharedInstance].midViewFrame];
     basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
     UIGraphicsBeginImageContext([DataManager sharedInstance].midViewFrame.size);
-    [[UIImage imageNamed:@"no_content"] drawInRect:CGRectMake(20, 90, [DataManager sharedInstance].midViewFrame.size.width-40, [UIImage imageNamed:@"no_content"].size.height-27)];
+    [[UIImage imageNamed:@"no_content"] drawInRect:CGRectMake(40, 90, [DataManager sharedInstance].midViewFrame.size.width-80, [UIImage imageNamed:@"no_content"].size.height-54)];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     basicInfoView.backgroundColor = [UIColor colorWithPatternImage:image];
     self.midView = basicInfoView;
     [self.view addSubview:basicInfoView];
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    self.tapGesture.numberOfTapsRequired = 1;
+    [self.midView addGestureRecognizer:self.tapGesture];
+    [self performSelectorOnMainThread:@selector(login)withObject:nil waitUntilDone:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,6 +117,7 @@
             div.frame = [DataManager sharedInstance].midViewFrame;
             [self.view addSubview:div];
             self.midView = div;
+            [self.midView addGestureRecognizer:self.tapGesture];
         }
             
         NSLog(@"1");
@@ -122,7 +134,7 @@
             pliv.frame = [DataManager sharedInstance].midViewFrame;
             [self.view addSubview:pliv];
             self.midView = pliv;
-            
+            [self.midView addGestureRecognizer:self.tapGesture];
         }
         NSLog(@"2");
         self.lastSelected = self.plantListTab;
@@ -139,6 +151,7 @@
             dlv.frame = [DataManager sharedInstance].midViewFrame;
             [self.view addSubview:dlv];
             self.midView = dlv;
+            [self.midView addGestureRecognizer:self.tapGesture];
         }
         self.lastSelected = self.docListTab;
         NSLog(@"3");
@@ -151,6 +164,7 @@
         uiv.frame = [DataManager sharedInstance].midViewFrame;
         [self.view addSubview:uiv];
         self.midView = uiv;
+        [self.midView addGestureRecognizer:self.tapGesture];
         self.lastSelected = self.myTab;
         NSLog(@"4");
     }
@@ -165,8 +179,8 @@
 }
 - (IBAction)searchBtnTapped:(id)sender {
     [self hideKeyboard];
-    if (self.searchTF.text == nil || self.searchTF.text.length==0) {
-        [Helper showTextView:@"Please enter query words." withView:self.view];
+    if (self.searchTF.text == nil || self.searchTF.text.length < 3) {
+        [Helper showTextView:@"Please enter at least 3 characters." withView:self.view];
     }
     else{
         [ActivityIndicator startActivityIndicator:self];
@@ -198,6 +212,7 @@
     basicInfoView.frame = [DataManager sharedInstance].midViewFrame;
     basicInfoView.isSearch = YES;
     self.midView = basicInfoView;
+    basicInfoView.delegate = self;
     [self.view addSubview:basicInfoView];
     [ActivityIndicator stopActivityIndicator:self];
 }
@@ -253,10 +268,25 @@
 }
 
 -(void)hideKeyboard{
-    [self.searchTF resignFirstResponder];
+    [[DataManager sharedInstance].currentTF resignFirstResponder];
 }
 
 -(void)showActivityIndicator{
     [ActivityIndicator startActivityIndicator:self];
 }
+
+-(void)login{
+    [LoginController presentLoginController:self];
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [DataManager sharedInstance].currentTF = textField;
+    return YES;
+}
+
+-(void)requestFaild{
+    [Helper showTextView:@"Server busy, connection failed." withView:self.view];
+}
+
+
 @end

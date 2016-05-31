@@ -25,8 +25,9 @@
     self.pdfView.scalesPageToFit=YES;
     [self.pdfView loadRequest:request];
     self.pdfView.delegate = self;
-    
+    self.isPresented = YES;
 }
+
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     [ActivityIndicator stopActivityIndicator:self];
@@ -37,6 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)backBtnTapped:(id)sender {
+    self.isPresented = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

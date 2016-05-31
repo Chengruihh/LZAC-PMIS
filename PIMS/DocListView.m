@@ -148,5 +148,7 @@
     }
 }
 
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [[DataManager sharedInstance].currentTF resignFirstResponder];
+}
 @end

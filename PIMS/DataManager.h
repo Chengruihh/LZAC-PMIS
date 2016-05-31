@@ -23,6 +23,7 @@
 @property (strong, nonatomic) DocListViewModel *docListViewModel;
 @property (assign, nonatomic) CGRect midViewFrame;
 @property (strong, nonatomic) NSString *selectedDocUrl;
+@property (weak, nonatomic) UITextField *currentTF;
 
 -(DocListViewModel *)convertDocListViewModel:(DocListRequestModel *)docListRequestModel;
 

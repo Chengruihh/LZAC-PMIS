@@ -229,4 +229,8 @@
     cell.backgroundView.backgroundColor = [UIColor clearColor];
     cell.contentView.backgroundColor = [UIColor clearColor];
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [[DataManager sharedInstance].currentTF resignFirstResponder];
+}
 @end
