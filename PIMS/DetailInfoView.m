@@ -33,12 +33,11 @@
         }
         //        UINib *nib = [UINib nibWithNibName:@"DoubleLabelCell" bundle:nil];
         //        [self.basicInfoTableView registerNib:nib forCellReuseIdentifier:@"DoubleLabelCell"];
-        self.plantTableView.backgroundView.backgroundColor = [UIColor redColor];
-        self.plantTableView.backgroundColor = [UIColor redColor];
         
-        self.partsTableView.backgroundView.backgroundColor = [UIColor blueColor];
-        self.partsTableView.backgroundColor = [UIColor blueColor];
+        self.partsTableView.tableFooterView=[[UIView alloc]init];
+        self.plantTableView.tableFooterView=[[UIView alloc]init];
     }
+    
     return self;
     
 }

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInfoView : UIView
+@property (weak, nonatomic) IBOutlet UIButton *logOutBtn;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @end

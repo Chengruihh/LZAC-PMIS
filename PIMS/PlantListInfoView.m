@@ -17,6 +17,7 @@
 //@property (strong, nonatomic) id expanded;
 @property (weak, nonatomic) UITableView *plantListView;
 @property (weak, nonatomic) UIView *pathView;
+@property (strong, nonatomic) UILabel *pathLabel;
 @property (weak, nonatomic) CurrentPlantCell *currentPlantCell;
 @end
 @implementation PlantListInfoView
@@ -52,15 +53,21 @@
         
         
         [tableView reloadData];
+        self.pathLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width, 30)];
+        NSString *plantName = [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentname];
+        self.pathLabel.text = [NSString stringWithFormat:@"Path: %@ / ", plantName ? plantName : @""] ;
+        self.pathLabel.textColor = [UIColor whiteColor];
+        self.pathLabel.font = [UIFont systemFontOfSize:12];
         
         UIView *path =  [[UIView alloc]initWithFrame:CGRectMake(0, 10, self.frame.size.width, 30)];
         path.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"path"]];
+        [path addSubview:self.pathLabel];
         self.pathView = path;
         self.plantListView = tableView;
         [self addSubview:path];
         [self addSubview:topcell];
         [self addSubview:tableView];
-        
+        self.plantListView.tableFooterView=[[UIView alloc]init];
     }
     return self;
     

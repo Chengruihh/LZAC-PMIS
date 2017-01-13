@@ -41,4 +41,35 @@
     return [[DocListViewModel alloc]initWithFolders:folderList];
 }
 
+- (BOOL)saveToLocalData:(NSObject *)savedObject withKey:(NSString *)key {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:[self fileName]];
+    if (data == nil) {
+        data = [[NSMutableDictionary alloc] init];
+    }
+    [data setValue:savedObject forKey:key];
+    return [self writeFileWithData:data];
+}
+
+- (BOOL)writeFileWithData: (NSMutableDictionary *) data {
+    if (data == nil) {
+        data = [[NSMutableDictionary alloc] init];
+    }
+    return [data writeToFile: [self fileName] atomically:YES];
+}
+
+- (NSString *)fileName {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* plistPath = [paths objectAtIndex:0];
+    NSString *filename =[plistPath stringByAppendingPathComponent:@"PIMSData.plist"];
+    return filename;
+}
+
+- (NSDictionary *)localData {
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:[self fileName]];
+    if (data == nil) {
+        data = [[NSMutableDictionary alloc] init];
+    }
+    return data;
+}
+
 @end

@@ -14,11 +14,13 @@
 #import "DocumentCell.h"
 #import "FolderCell.h"
 #import "PDFViewController.h"
+#import "BasicInfoView.h"
 
 @interface DocListView() <RATreeViewDelegate, RATreeViewDataSource>
 //@property (strong, nonatomic) id expanded;
 @property (weak, nonatomic) RATreeView *treeView;
 @property (weak, nonatomic) UIView *pathView;
+@property (strong, nonatomic) UILabel *pathLabel;
 @end
 @implementation DocListView
 
@@ -49,14 +51,22 @@
         
         [treeView reloadData];
         
+        
+        self.pathLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width, 30)];
+        NSString *plantName = [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentname];
+        self.pathLabel.text = [NSString stringWithFormat:@"Path: %@ / ", plantName ? plantName : @""] ;
+        self.pathLabel.textColor = [UIColor whiteColor];
+        self.pathLabel.font = [UIFont systemFontOfSize:12];
         UIView *path =  [[UIView alloc]initWithFrame:CGRectMake(0, 10, self.frame.size.width, 30)];
         path.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"path"]];
+        
+        [path addSubview:self.pathLabel];
         self.pathView = path;
         self.treeView = treeView;
         [self addSubview:path];
         [self addSubview:treeView];
-        
     }
+    self.treeView.treeFooterView=[[UIView alloc]init];
     return self;
     
 }
@@ -102,8 +112,6 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Number of children %ld", (long)numberOfChildren];
     
-    
-    
     if (treeNodeInfo.treeDepthLevel == 0) {
         NSArray *cellObjects = [[NSBundle mainBundle] loadNibNamed:@"FolderCell" owner:self options:nil];
         FolderCell *folderCell = cellObjects.firstObject;
@@ -143,8 +151,18 @@
 -(void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo{
     if ([item isKindOfClass:[Document class]]) {
         [DataManager sharedInstance].selectedDocUrl = ((Document *)item).docURL;
-        
         [self.delegate loadPDFViewForDocument];
+    }
+    else if([item isKindOfClass:[Folder class]]){
+        if ([treeNodeInfo isExpanded]) {
+            [self.pathLabel removeFromSuperview];
+            self.pathLabel.text = [NSString stringWithFormat:@"Path: %@ /", [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentname]];
+            [self.pathView addSubview:self.pathLabel];
+        }else{
+            [self.pathLabel removeFromSuperview];
+            self.pathLabel.text = [NSString stringWithFormat:@"Path: %@ / %@", [[DataManager sharedInstance].basicViewModel.JiBenXinXi[0] equipmentname], ((Folder *)item).folderName];
+            [self.pathView addSubview:self.pathLabel];
+        }
     }
 }
 

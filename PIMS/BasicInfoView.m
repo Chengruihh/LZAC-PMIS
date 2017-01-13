@@ -35,7 +35,7 @@
         if ([DataManager sharedInstance].basicViewModel) {
             self.basicInfoModel = [DataManager sharedInstance].basicViewModel.JiBenXinXi.firstObject;
         }
-        
+        self.basicInfoTableView.tableFooterView = [[UIView alloc]init];
     }
     return self;
 

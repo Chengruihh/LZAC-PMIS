@@ -20,4 +20,21 @@
     [hud show:YES];
     [hud hide:YES afterDelay:2];
 }
+
++ (void)showOkAlertView:(nullable UIViewController *)vc
+              withTitle:(nullable NSString *)title
+                withMsg:(nullable NSString *)msg
+          withOkHandler:(void (^ __nullable)(void))okHandler
+         withCompletion:(void (^ __nullable)(UIAlertController *alertView))completion{
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:NSLocalizedString(title, nil) message:NSLocalizedString(msg, nil) preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (okHandler) okHandler();
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertView addAction:okAction];
+    [alertView addAction:cancelAction];
+    [vc presentViewController:alertView animated:YES completion:nil];
+    if (completion) completion(alertView);
+}
+
 @end

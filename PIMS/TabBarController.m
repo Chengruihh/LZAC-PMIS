@@ -38,11 +38,11 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestDocListSucceed) name:@"requestDocListSucceed" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestPlantListSucceed) name:@"requestPlantListSucceed" object:nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"searchFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestBasicFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestDetailFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestDocListFailed" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFaild) name:@"requestPlantListFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFailed) name:@"searchFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFailed) name:@"requestBasicFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFailed) name:@"requestDetailFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFailed) name:@"requestDocListFailed" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(requestFailed) name:@"requestPlantListFailed" object:nil];
     
     [DataManager sharedInstance].midViewFrame = CGRectMake(self.midView.frame.origin.x, self.midView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.topView.frame.size.height-self.tabbar.frame.size.height-20);
     
@@ -66,6 +66,7 @@
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     self.tapGesture.numberOfTapsRequired = 1;
     [self.midView addGestureRecognizer:self.tapGesture];
+    [DataManager sharedInstance].tabController = self;
     [self performSelectorOnMainThread:@selector(login)withObject:nil waitUntilDone:NO];
 }
 
@@ -78,12 +79,16 @@
 -(void)setTabImages{
     self.detailTab.image = [[UIImage imageNamed:@"tab_detail"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.detailTab.selectedImage = [[UIImage imageNamed:@"tab_detail_highlight"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.detailTab setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     self.plantListTab.image = [[UIImage imageNamed:@"tab_plant"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.plantListTab.selectedImage = [[UIImage imageNamed:@"tab_plant_highlight"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.plantListTab setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     self.docListTab.image = [[UIImage imageNamed:@"tab_doc"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.docListTab.selectedImage = [[UIImage imageNamed:@"tab_doc_highlight"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.docListTab setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     self.myTab.image = [[UIImage imageNamed:@"tab_my"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.myTab.selectedImage = [[UIImage imageNamed:@"tab_my_highlight"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.myTab setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 }
 
 -(void)setTopViewImages{
@@ -284,8 +289,8 @@
     return YES;
 }
 
--(void)requestFaild{
-    [Helper showTextView:@"Server busy, connection failed." withView:self.view];
+-(void)requestFailed{
+    [Helper showTextView:@"Connection failed, please check your network." withView:self.view];
 }
 
 

@@ -128,5 +128,31 @@
 
 }
 
--(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password{}
+-(void)loginWithUsername:(NSString *)username andPassword:(NSString *)password{
+    NSDictionary *params = @{@"requestcode":@"001", @"username":username, @"userpassword":password};
+    [_sessionManager POST:PIMS_HOST parameters:params
+                 progress:nil
+                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                      NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                           options:kNilOptions
+                                                                             error:nil];
+                      NSLog(@"%@", responseDict);
+                      NSArray *temAry = [responseDict objectForKey:@"DengLu"];
+                      if ([[temAry[0] objectForKey:@"responsecode"] isEqualToString:@"1"]) {
+                          NSLog(@"login succeed");
+                          [self postNotification:@"loginSucceed"];
+                          [DataManager sharedInstance].username = username;
+                          [DataManager sharedInstance].password = password;
+                      }else{
+                          NSLog(@"login failed");
+                          [self postNotification:@"loginFailed"];
+                      }
+                  }
+                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                      [self postNotification:@"loginRequestFailed"];
+                      NSLog(@"login request fail");
+                      NSLog(@"%@",error);
+                      
+                  }];
+}
 @end
